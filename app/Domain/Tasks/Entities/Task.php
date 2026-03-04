@@ -13,6 +13,13 @@ class Task
 
     protected TaskStatus $status;
 
+    public function __construct(
+        TaskTitle $title,
+        TaskStatus $status
+    ) {
+        $this->title = $title;
+        $this->status = $status;
+    }
     public function complete(): void
     {
          $this->status= TaskStatus::Completed;
