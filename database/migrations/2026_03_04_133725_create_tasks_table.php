@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
+
+            $table->string('title');
+
+            // enum як string (DDD-friendly)
+            $table->string('status')
+                ->default('pending');
+
             $table->timestamps();
         });
     }
