@@ -41,27 +41,4 @@ class Task
         return $this->status;
     }
 
-    /**
-     * @param TaskStatus $status
-     */
-    public function setStatus(TaskStatus $status): void
-    {
-        $this->status = $status;
-    }
-
-    /**
-     * @param TaskTitle $title
-     */
-    public function setTitle(TaskTitle $title): void
-    {
-        $this->title = $title;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id): void
-    {
-        $this->id = $id;
-    }
 }
