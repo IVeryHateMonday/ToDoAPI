@@ -16,12 +16,14 @@ class CreateTaskHandler
 
     }
 
-    public function handler(CreateTaskCommand $command) : Task
+    public function handle(CreateTaskCommand $command) : Task
     {
         $task = new Task(
             new TaskTitle($command->title),
             TaskStatus::Pending
         );
+
+        $this->task->save($task);
 
         return $task;
     }
