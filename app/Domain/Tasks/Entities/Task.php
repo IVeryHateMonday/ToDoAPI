@@ -7,7 +7,7 @@ use App\Domain\Tasks\ValueObjects\TaskTitle;
 
 class Task
 {
-    protected  $id;
+    protected  ?int $id = null;
 
     protected TaskTitle $title;
 
@@ -31,6 +31,18 @@ class Task
     public function getTitle(): TaskTitle
     {
         return $this->title;
+    }
+
+    /**
+     * @param int|null $id
+     */
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
+    }
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**

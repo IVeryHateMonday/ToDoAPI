@@ -15,10 +15,11 @@ class EloquentTaskRepository implements TaskRepositoryInterface
         $model = new EloquentTask();
         $model->title  = $task->getTitle()->getValue();
         $model->status = $task->getStatus()->value;
+
         $model->save();
 
-        // опційно: прокинути id назад у доменну сутність, якщо в неї є setId()
-        // $task->setId($model->id);
+        $task->setId($model->id);
+
     }
 
     public function findById(int $id): ?DomainTask
@@ -29,10 +30,17 @@ class EloquentTaskRepository implements TaskRepositoryInterface
             return null;
         }
 
-        return new DomainTask(
+
+
+        $task= new DomainTask(
             new TaskTitle($model->title),
             TaskStatus::from($model->status),
         );
+
+        $task->setId($model->id);
+
+        return $task;
+
     }
 
     public function delete(DomainTask $task): void

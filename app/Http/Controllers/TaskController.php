@@ -19,10 +19,13 @@ class TaskController extends Controller
         );
 
         return response()->json([
-            // якщо в DomainTask є getId()
-            // 'id'     => $task->getId(),
             'title'  => $task->getTitle()->getValue(),
             'status' => $task->getStatus()->value,
         ], 201);
+    }
+
+    public function findById(Request $request)
+    {
+
     }
 }
