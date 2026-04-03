@@ -14,4 +14,5 @@ Route::get('/test', function () {
 
 Route::post('/tasks', [TaskController::class, 'store']);
 
-Route::post('/register', [UserController::class,'registr']);
+Route::post('/register', [UserController::class,'register']);
+Route::post('/login',[UserController::class,'login']);
