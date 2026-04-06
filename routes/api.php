@@ -16,3 +16,9 @@ Route::post('/tasks', [TaskController::class, 'store']);
 
 Route::post('/register', [UserController::class,'register']);
 Route::post('/login',[UserController::class,'login']);
+
+Route::middleware('auth:sanctum')->get('/test', function (){
+    return response()->json([
+        'message' => 'API works'
+    ]);
+});
