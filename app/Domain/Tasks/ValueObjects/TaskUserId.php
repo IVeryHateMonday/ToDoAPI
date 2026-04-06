@@ -2,11 +2,11 @@
 
 namespace App\Domain\Tasks\ValueObjects;
 
-class TackUserId
+class TaskUserId
 {
-    protected int $value;
+    private int $value;
 
-    protected function __construct(int $value)
+    public function __construct(int $value)
     {
         $this->value = $value;
     }

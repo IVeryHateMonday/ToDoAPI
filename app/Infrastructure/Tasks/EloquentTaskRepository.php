@@ -6,6 +6,7 @@ use App\Domain\Tasks\Entities\Task as DomainTask;
 use App\Domain\Tasks\Repositories\TaskRepositoryInterface;
 use App\Domain\Tasks\ValueObjects\TaskStatus;
 use App\Domain\Tasks\ValueObjects\TaskTitle;
+use App\Domain\Tasks\ValueObjects\TaskUserId;
 use App\Models\Task as EloquentTask;
 
 class EloquentTaskRepository implements TaskRepositoryInterface
@@ -15,6 +16,7 @@ class EloquentTaskRepository implements TaskRepositoryInterface
         $model = new EloquentTask();
         $model->title  = $task->getTitle()->getValue();
         $model->status = $task->getStatus()->value;
+        $model->user_id= $task->getUserId()->getValue();
 
         $model->save();
 
@@ -35,6 +37,7 @@ class EloquentTaskRepository implements TaskRepositoryInterface
         $task= new DomainTask(
             new TaskTitle($model->title),
             TaskStatus::from($model->status),
+            new TaskUserId($model->user_id),
         );
 
         $task->setId($model->id);

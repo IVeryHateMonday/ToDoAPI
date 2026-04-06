@@ -6,6 +6,7 @@ use App\Domain\Tasks\Entities\Task;
 use App\Domain\Tasks\Repositories\TaskRepositoryInterface;
 use App\Domain\Tasks\ValueObjects\TaskStatus;
 use App\Domain\Tasks\ValueObjects\TaskTitle;
+use App\Domain\Tasks\ValueObjects\TaskUserId;
 
 class CreateTaskHandler
 {
@@ -20,7 +21,9 @@ class CreateTaskHandler
     {
         $task = new Task(
             new TaskTitle($command->title),
-            TaskStatus::Pending
+            TaskStatus::Pending,
+            new TaskUserId($command->userId),
+
         );
 
         $this->task->save($task);
