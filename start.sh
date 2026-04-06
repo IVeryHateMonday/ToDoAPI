@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -15,4 +16,5 @@ docker compose exec app php artisan migrate --force
 
 docker compose exec app chmod -R 775 storage bootstrap/cache
 docker compose exec app chown -R www-data:www-data storage bootstrap/cache
+composer test
 echo "Project start — http://localhost:8000"
