@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Http\Request;
 
 
 class UserController extends Controller
@@ -51,6 +52,18 @@ class UserController extends Controller
                 'name' =>$user->name,
                 'email'=>$user->email
             ]
+        ]);
+    }
+
+    public function userInfo(Request $request): JsonResponse
+    {
+        dd($request);
+        /** @var User */
+        $user =$request->user();
+
+        return response()->json([
+            'name'=>$user->name,
+            'email'=>$user->email
         ]);
     }
 }

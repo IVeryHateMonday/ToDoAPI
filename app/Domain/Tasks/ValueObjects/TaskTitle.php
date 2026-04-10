@@ -5,23 +5,34 @@ namespace App\Domain\Tasks\ValueObjects;
 
 class TaskTitle
 {
+    private const MAX_LENGTH = 255;
+
     private string $value;
 
-    public function __construct($value)
+    public function __construct(string $value)
     {
-        if (empty($value)){
-            throw new \InvalidArgumentException("Task title cannot be null");
-        }
+        $this->ensureNotEmpty($value);
+        $this->ensureNotTooLong($value);
 
-        if (strlen($value)>255){
-            throw new \InvalidArgumentException("Task title too long");
-        }
-
-        $this->value=$value;
+        $this->value = $value;
     }
 
-    public function getValue() : string
+    public function getValue(): string
     {
-         return $this->value;
+        return $this->value;
+    }
+
+    private function ensureNotEmpty(string $value): void
+    {
+        if ($value === '') {
+            throw new \InvalidArgumentException('Task title cannot be empty');
+        }
+    }
+
+    private function ensureNotTooLong(string $value): void
+    {
+        if (strlen($value) > self::MAX_LENGTH) {
+            throw new \InvalidArgumentException('Task title too long');
+        }
     }
 }

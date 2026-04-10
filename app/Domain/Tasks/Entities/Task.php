@@ -7,11 +7,11 @@ use App\Domain\Tasks\ValueObjects\TaskTitle;
 
 class Task
 {
-    protected  ?int $id = null;
+    private ?int $id = null;
 
-    protected TaskTitle $title;
+    private TaskTitle $title;
 
-    protected TaskStatus $status;
+    private TaskStatus $status;
 
     public function __construct(
         TaskTitle $title,
@@ -22,7 +22,12 @@ class Task
     }
     public function complete(): void
     {
-         $this->status= TaskStatus::Completed;
+        $this->status = TaskStatus::Completed;
+    }
+
+    public function isCompleted(): bool
+    {
+        return $this->status->isCompleted();
     }
 
     /**
@@ -40,7 +45,7 @@ class Task
     {
         $this->id = $id;
     }
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
