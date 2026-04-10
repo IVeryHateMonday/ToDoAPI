@@ -4,6 +4,7 @@ namespace App\Domain\Tasks\Entities;
 
 use App\Domain\Tasks\ValueObjects\TaskStatus;
 use App\Domain\Tasks\ValueObjects\TaskTitle;
+use App\Domain\Tasks\ValueObjects\TaskUserId;
 
 class Task
 {
@@ -13,12 +14,16 @@ class Task
 
     private TaskStatus $status;
 
+    protected TaskUserId $userId;
+
     public function __construct(
         TaskTitle $title,
-        TaskStatus $status
+        TaskStatus $status,
+        TaskUserId $userId
     ) {
         $this->title = $title;
         $this->status = $status;
+        $this->userId = $userId;
     }
     public function complete(): void
     {
@@ -56,6 +61,11 @@ class Task
     public function getStatus(): TaskStatus
     {
         return $this->status;
+    }
+
+    public function getUserId(): TaskUserId
+    {
+        return $this->userId;
     }
 
 }

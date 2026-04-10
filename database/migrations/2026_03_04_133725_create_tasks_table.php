@@ -16,9 +16,12 @@ return new class extends Migration
 
             $table->string('title');
 
-            // enum як string (DDD-friendly)
             $table->string('status')
                 ->default('pending');
+            $table->foreignId('user_id')
+                ->constrained()
+                ->cascadeOnDelete()
+            ;
 
             $table->timestamps();
         });

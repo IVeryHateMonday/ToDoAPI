@@ -15,7 +15,7 @@ class TaskController extends Controller
         ]);
 
         $task = $handler->handle(
-            new CreateTaskCommand($validated['title'])
+            new CreateTaskCommand($validated['title'], $request->user()->id)
         );
 
         return response()->json([

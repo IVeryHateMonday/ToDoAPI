@@ -12,13 +12,14 @@ Route::get('/test', function () {
     ]);
 });
 
-Route::post('/tasks', [TaskController::class, 'store']);
 
 Route::post('/register', [UserController::class,'register']);
 Route::post('/login',[UserController::class,'login']);
 
 Route::middleware('auth:sanctum')
-    ->prefix('user')
     ->group(function () {
-        Route::get('/me', [UserController::class, 'userInfo']);
+        Route::prefix('user')->group(function () {
+            Route::get('/me', [UserController::class, 'me']);
+        });
+        Route::post('/tasks', [TaskController::class, 'store']);
     });

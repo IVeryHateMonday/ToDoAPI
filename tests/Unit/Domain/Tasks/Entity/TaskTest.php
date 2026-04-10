@@ -5,6 +5,7 @@ namespace Domain\Tasks\Entity;
 use App\Domain\Tasks\Entities\Task;
 use App\Domain\Tasks\ValueObjects\TaskStatus;
 use App\Domain\Tasks\ValueObjects\TaskTitle;
+use App\Domain\Tasks\ValueObjects\TaskUserId;
 use Tests\TestCase;
 
 class TaskTest extends TestCase
@@ -13,7 +14,8 @@ class TaskTest extends TestCase
     {
         $task= new Task(
             new TaskTitle('Test'),
-            TaskStatus::Pending
+            TaskStatus::Pending,
+            new TaskUserId(1)
         );
 
         $this->assertSame('Test', $task->getTitle()->getValue());
@@ -26,7 +28,8 @@ class TaskTest extends TestCase
     {
         $task= new Task(
             new TaskTitle('Test'),
-            TaskStatus::Pending
+            TaskStatus::Pending,
+            new TaskUserId(1)
         );
 
         $task->complete();
